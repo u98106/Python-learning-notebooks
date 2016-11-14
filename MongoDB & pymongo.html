@@ -1,0 +1,621 @@
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="MongoDB">MongoDB<a class="anchor-link" href="#MongoDB">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">css</span> <span class="o">=</span> <span class="s">&quot;table td:nth-child(1) {font-weight:bold; background-color: #fec; }&quot;</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&lt;style&gt;{}&lt;/style&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">css</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>table td:nth-child(1) {font-weight:bold; background-color: #fec; }</style>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="What-is-nosql?">What is <code>nosql</code>?<a class="anchor-link" href="#What-is-nosql?">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>A NoSQL database provides a mechanism for storage and retrieval of data which is modeled in <b>means other than the tabular relations</b> used in relational databases.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>MongoDB is a <code>document database</code></li>
+<li>Binary JSON (BSON) data constitutes a document</li>
+<li>Each data-base constitutes <code>collection</code>s of such documents</li>
+<li>Each document includes the <code>schema</code> for the data it stores<ul>
+<li>could potentially vary between objects</li>
+<li>usually is the same across </li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Why-nosql?">Why nosql?<a class="anchor-link" href="#Why-nosql?">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Relational databases were not designed to cope with the scale and agility challenges of modern applications</p>
+<ul>
+<li>Developers are working with applications that create massive volumes of new, rapidly changing data types — structured, semi-structured, unstructured and polymorphic data.</li>
+<li>Waterfall development cycle is long gone. Now small teams work in agile sprints, iterating quickly and pushing code every week or two</li>
+<li>Applications <code>always-on</code>, accessible from many different devices and scaled globally to millions of users.</li>
+<li>scale-out architectures using open source software, commodity servers and cloud computing instead of large monolithic servers and storage infrastructure.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="nosql-benefits">nosql benefits<a class="anchor-link" href="#nosql-benefits">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Large volumes of rapidly changing structured, semi-structured, and unstructured data</li>
+<li>Agile sprints, quick schema iteration, and frequent code pushes</li>
+<li>Object-oriented programming that is easy to use and flexible</li>
+<li>Geographically distributed scale-out architecture instead of expensive, monolithic architecture</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="mongoDB-elements">mongoDB elements<a class="anchor-link" href="#mongoDB-elements">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>RDBMS</th>
+<th>MongoDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td>Database</td>
+</tr>
+<tr>
+<td>Table</td>
+<td>Collection</td>
+</tr>
+<tr>
+<td>Tuple/Row</td>
+<td>Document</td>
+</tr>
+<tr>
+<td>column</td>
+<td>Field</td>
+</tr>
+<tr>
+<td>Table Join</td>
+<td>Embedded Documents</td>
+</tr>
+<tr>
+<td>Primary Key</td>
+<td>Primary Key (Default key <code>_id</code> provided by mongodb itself)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sample-Document">Sample Document<a class="anchor-link" href="#Sample-Document">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span class="p">{</span>
+   <span class="err">_id:</span> <span class="err">ObjectId(7df78ad8902c)</span>
+   <span class="err">title:</span> <span class="err">&#39;MongoDB</span> <span class="err">Overview&#39;,</span> 
+   <span class="err">description:</span> <span class="err">&#39;MongoDB</span> <span class="err">is</span> <span class="err">no</span> <span class="err">sql</span> <span class="err">database&#39;,</span>
+   <span class="err">tags:</span> <span class="err">[&#39;mongodb&#39;,</span> <span class="err">&#39;database&#39;,</span> <span class="err">&#39;NoSQL&#39;],</span>
+   <span class="err">likes:</span> <span class="err">100,</span> 
+   <span class="err">comments:</span> <span class="err">[</span>    
+      <span class="err">{</span>
+         <span class="err">user:&#39;user1&#39;,</span>
+         <span class="err">message:</span> <span class="err">&#39;My</span> <span class="err">first</span> <span class="err">comment&#39;,</span>
+         <span class="err">dateCreated:</span> <span class="err">new</span> <span class="err">Date(2011,1,20,2,15),</span>
+         <span class="err">like:</span> <span class="err">0</span> 
+      <span class="p">}</span><span class="err">,</span>
+      <span class="p">{</span>
+         <span class="err">user:&#39;user2&#39;,</span>
+         <span class="err">message:</span> <span class="err">&#39;My</span> <span class="err">second</span> <span class="err">comments&#39;,</span>
+         <span class="err">dateCreated:</span> <span class="err">new</span> <span class="err">Date(2011,1,25,7,45),</span>
+         <span class="err">like:</span> <span class="err">5</span>
+      <span class="p">}</span>
+   <span class="err">]</span>
+<span class="err">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><code>_id</code> is a 12 bytes hexadecimal number which assures the uniqueness of every document.</li>
+<li>If not provided, is supplied by mongoDB</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><code>mongod</code> is the server (daemon)</li>
+<li><code>mongo</code> is the client<ul>
+<li>provides a command line shell</li>
+<li>standard javascript acceptable as commands</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="PyMongo">PyMongo<a class="anchor-link" href="#PyMongo">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>python module to access mongodb database and documents</li>
+<li>Provides all CRUD capabilities along with admin tasks as well</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># m.py</span>
+
+<span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="s">&#39;localhost:27017&#39;</span><span class="p">)</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">myFirstMB</span>
+    <span class="k">return</span> <span class="n">db</span>
+
+<span class="k">def</span> <span class="nf">add_country</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&quot;name&quot;</span> <span class="p">:</span> <span class="s">&quot;Canada&quot;</span><span class="p">})</span>
+    
+<span class="k">def</span> <span class="nf">get_country</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">find_one</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span> 
+    <span class="n">add_country</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">get_country</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{u&apos;_id&apos;: ObjectId(&apos;56a757b4bb0a5d2a7b29ae54&apos;), u&apos;name&apos;: u&apos;Canada&apos;}
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/Library/Python/2.7/site-packages/ipykernel/__main__.py:10: DeprecationWarning: insert is deprecated. Use insert_one or insert_many instead.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>$ python m.py
+/usr/lib/python2.7/dist-packages/pkg_resources.py:1031: UserWarning: /home/k/.python-eggs is writable by group/others and vulnerable to attack when used with get_resource_filename. Consider a more secure location (set with .set_extraction_path or the PYTHON_EGG_CACHE environment variable).
+  warnings.warn(msg, UserWarning)
+{u'_id': ObjectId('53c181ce8ce4b12ad763c1dd'), u'name': u'Canada'}</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># mongo1.py</span>
+
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="s">&#39;mongodb://localhost:27017/&#39;</span><span class="p">)</span>
+
+<span class="c"># data base name : &#39;test-database-1&#39;</span>
+<span class="n">mydb</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">&#39;test-database-1&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">myrecord</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;author&quot;</span><span class="p">:</span> <span class="s">&quot;Duke&quot;</span><span class="p">,</span>
+        <span class="s">&quot;title&quot;</span> <span class="p">:</span> <span class="s">&quot;PyMongo 101&quot;</span><span class="p">,</span>
+        <span class="s">&quot;tags&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&quot;MongoDB&quot;</span><span class="p">,</span> <span class="s">&quot;PyMongo&quot;</span><span class="p">,</span> <span class="s">&quot;Tutorial&quot;</span><span class="p">],</span>
+        <span class="s">&quot;date&quot;</span> <span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+        <span class="p">}</span>
+
+<span class="n">record_id</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">mytable</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">myrecord</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">record_id</span>
+<span class="k">print</span> <span class="n">mydb</span><span class="o">.</span><span class="n">collection_names</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Inserting-multiple-documents">Inserting multiple documents<a class="anchor-link" href="#Inserting-multiple-documents">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># mongo3.py</span>
+
+<span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="s">&#39;mongodb://localhost:27017/&#39;</span><span class="p">)</span>
+<span class="n">mydb</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s">&#39;test-database&#39;</span><span class="p">]</span>
+
+<span class="n">mydb</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="n">post</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;author&quot;</span><span class="p">:</span> <span class="s">&quot;Duke 5&quot;</span><span class="p">,</span>
+        <span class="s">&quot;title&quot;</span> <span class="p">:</span> <span class="s">&quot;PyMongo 101 - 5&quot;</span><span class="p">,</span>
+        <span class="s">&quot;tags&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&quot;MongoDB 5&quot;</span><span class="p">,</span> <span class="s">&quot;PyMongo 101 - A5&quot;</span><span class="p">,</span> <span class="s">&quot;Tutorial 5&quot;</span><span class="p">],</span>
+        <span class="s">&quot;date&quot;</span> <span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+        <span class="p">}</span>
+
+<span class="n">posts</span> <span class="o">=</span> <span class="n">mydb</span><span class="o">.</span><span class="n">posts</span>
+<span class="n">post_id</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">post</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">post_id</span>
+<span class="k">print</span> <span class="n">mydb</span><span class="o">.</span><span class="n">collection_names</span><span class="p">()</span>
+
+<span class="n">new_posts</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&quot;author&quot;</span><span class="p">:</span> <span class="s">&quot;Duke 6&quot;</span><span class="p">,</span>
+              <span class="s">&quot;title&quot;</span> <span class="p">:</span> <span class="s">&quot;PyMongo 101-A6&quot;</span><span class="p">,</span>
+              <span class="s">&quot;tags&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&quot;MongoDB 6&quot;</span><span class="p">,</span> <span class="s">&quot;PyMongo 6&quot;</span><span class="p">,</span> <span class="s">&quot;Tutorial 6&quot;</span><span class="p">],</span>
+              <span class="s">&quot;date&quot;</span> <span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mo">01</span><span class="p">,</span> <span class="mi">13</span><span class="p">)},</span>
+             <span class="p">{</span><span class="s">&quot;author&quot;</span><span class="p">:</span> <span class="s">&quot;Adja&quot;</span><span class="p">,</span>
+              <span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;MongoDB 101-A7&quot;</span><span class="p">,</span>
+              <span class="s">&quot;note&quot;</span><span class="p">:</span> <span class="s">&quot;Schema free MongoDB&quot;</span><span class="p">,</span>
+              <span class="s">&quot;date&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">42</span><span class="p">)}</span>
+            <span class="p">]</span>
+<span class="n">mydb</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">new_posts</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Querying">Querying<a class="anchor-link" href="#Querying">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">mydb</span><span class="o">.</span><span class="n">mytable</span><span class="o">.</span><span class="n">find</span><span class="p">():</span>
+    <span class="n">post</span>
+ 
+<span class="p">{</span><span class="s">u&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">945000</span><span class="p">),</span> <span class="s">u&#39;_id&#39;</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&#39;5659393d312f910b5b05c18a&#39;</span><span class="p">),</span> <span class="s">u&#39;author&#39;</span><span class="p">:</span> <span class="s">u&#39;Duke&#39;</span><span class="p">,</span> <span class="s">u&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">u&#39;MongoDB&#39;</span><span class="p">,</span> <span class="s">u&#39;PyMongo&#39;</span><span class="p">,</span> <span class="s">u&#39;Tutorial&#39;</span><span class="p">],</span> <span class="s">u&#39;title&#39;</span><span class="p">:</span> <span class="s">u&#39;PyMongo 101&#39;</span><span class="p">}</span>
+<span class="p">{</span><span class="s">u&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">496000</span><span class="p">),</span> <span class="s">u&#39;_id&#39;</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&#39;5659457a312f91162bf20276&#39;</span><span class="p">),</span> <span class="s">u&#39;author&#39;</span><span class="p">:</span> <span class="s">u&#39;Duke II&#39;</span><span class="p">,</span> <span class="s">u&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">u&#39;MongoDB II&#39;</span><span class="p">,</span> <span class="s">u&#39;PyMongo II&#39;</span><span class="p">,</span> <span class="s">u&#39;Tutorial II&#39;</span><span class="p">],</span> <span class="s">u&#39;title&#39;</span><span class="p">:</span> <span class="s">u&#39;PyMongo II 101&#39;</span><span class="p">}</span>
+<span class="p">{</span><span class="s">u&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">496000</span><span class="p">),</span> <span class="s">u&#39;_id&#39;</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&#39;5659457a312f91162bf20277&#39;</span><span class="p">),</span> <span class="s">u&#39;author&#39;</span><span class="p">:</span> <span class="s">u&#39;Duke III&#39;</span><span class="p">,</span> <span class="s">u&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">u&#39;MongoDB III&#39;</span><span class="p">,</span> <span class="s">u&#39;PyMongo III&#39;</span><span class="p">,</span> <span class="s">u&#39;Tutorial III&#39;</span><span class="p">],</span> <span class="s">u&#39;title&#39;</span><span class="p">:</span> <span class="s">u&#39;PyMongo III 101&#39;</span><span class="p">}</span>
+<span class="p">{</span><span class="s">u&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">317000</span><span class="p">),</span> <span class="s">u&#39;_id&#39;</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&#39;56595481312f9119e4bace31&#39;</span><span class="p">),</span> <span class="s">u&#39;author&#39;</span><span class="p">:</span> <span class="s">u&#39;Duke 4&#39;</span><span class="p">,</span> <span class="s">u&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">u&#39;MongoDB 4&#39;</span><span class="p">,</span> <span class="s">u&#39;PyMongo 4&#39;</span><span class="p">,</span> <span class="s">u&#39;Tutorial 4&#39;</span><span class="p">],</span> <span class="s">u&#39;title&#39;</span><span class="p">:</span> <span class="s">u&#39;PyMongo 4 101&#39;</span><span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">mydb</span><span class="o">.</span><span class="n">mytable</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&quot;author&quot;</span><span class="p">:</span> <span class="s">&quot;Adja&quot;</span><span class="p">}):</span>
+    <span class="n">post</span>
+ 
+<span class="p">{</span><span class="s">u&#39;note&#39;</span><span class="p">:</span> <span class="s">u&#39;Schema free MongoDB&#39;</span><span class="p">,</span> <span class="s">u&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">42</span><span class="p">),</span> <span class="s">u&#39;_id&#39;</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&#39;56595cf0312f912bc242f79e&#39;</span><span class="p">),</span> <span class="s">u&#39;author&#39;</span><span class="p">:</span> <span class="s">u&#39;Adja&#39;</span><span class="p">,</span> <span class="s">u&#39;title&#39;</span><span class="p">:</span> <span class="s">u&#39;MongoDB 101-A7&#39;</span><span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">mytable</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="mi">7</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">mydb</span><span class="o">.</span><span class="n">mytable</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&quot;author&quot;</span><span class="p">:</span> <span class="s">&quot;Adja&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="mi">1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Range-queries">Range queries<a class="anchor-link" href="#Range-queries">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">datetime</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">mydb</span><span class="o">.</span><span class="n">mytable</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&quot;date&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;$lt&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}})</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&quot;author&quot;</span><span class="p">):</span>
+    <span class="n">post</span>
+ 
+<span class="p">{</span><span class="s">u&#39;note&#39;</span><span class="p">:</span> <span class="s">u&#39;Schema free MongoDB&#39;</span><span class="p">,</span> <span class="s">u&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">42</span><span class="p">),</span> <span class="s">u&#39;_id&#39;</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&#39;56595cf0312f912bc242f79e&#39;</span><span class="p">),</span> <span class="s">u&#39;author&#39;</span><span class="p">:</span> <span class="s">u&#39;Adja&#39;</span><span class="p">,</span> <span class="s">u&#39;title&#39;</span><span class="p">:</span> <span class="s">u&#39;MongoDB 101-A7&#39;</span><span class="p">}</span>
+<span class="p">{</span><span class="s">u&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">945000</span><span class="p">),</span> <span class="s">u&#39;_id&#39;</span><span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s">&#39;5659393d312f910b5b05c18a&#39;</span><span class="p">),</span> <span class="s">u&#39;author&#39;</span><span class="p">:</span> <span class="s">u&#39;Duke&#39;</span><span class="p">,</span> <span class="s">u&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">u&#39;MongoDB&#39;</span><span class="p">,</span> <span class="s">u&#39;PyMongo&#39;</span><span class="p">,</span> <span class="s">u&#39;Tutorial&#39;</span><span class="p">],</span> <span class="s">u&#39;title&#39;</span><span class="p">:</span> <span class="s">u&#39;PyMongo 101&#39;</span><span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Indexing">Indexing<a class="anchor-link" href="#Indexing">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Indexes needed for speeding up queries</li>
+<li>One of more fields may be specified as index for a document collection</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">create_index</span><span class="p">([(</span><span class="s">&#39;user_id&#39;</span><span class="p">,</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">ASCENDING</span><span class="p">)],</span>
+<span class="o">...</span>                                   <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">index_information</span><span class="p">())</span>
+<span class="p">[</span><span class="s">u&#39;user_id_1&#39;</span><span class="p">,</span> <span class="s">u&#39;_id_&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">user_profiles</span> <span class="o">=</span> <span class="p">[</span>
+<span class="o">...</span>     <span class="p">{</span><span class="s">&#39;user_id&#39;</span><span class="p">:</span> <span class="mi">211</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Luke&#39;</span><span class="p">},</span>
+<span class="o">...</span>     <span class="p">{</span><span class="s">&#39;user_id&#39;</span><span class="p">:</span> <span class="mi">212</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Ziltoid&#39;</span><span class="p">}]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">insert_many</span><span class="p">(</span><span class="n">user_profiles</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Indexes prevent us from inserting a document whose <code>user_id</code> is already present</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">new_profile</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;user_id&#39;</span><span class="p">:</span> <span class="mi">213</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Drew&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">duplicate_profile</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;user_id&#39;</span><span class="p">:</span> <span class="mi">212</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Tommy&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">new_profile</span><span class="p">)</span>  <span class="c"># This is fine.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span><span class="n">duplicate_profile</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="n">pymongo</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">DuplicateKeyError</span><span class="p">:</span> <span class="n">E11000</span> <span class="n">duplicate</span> <span class="n">key</span> <span class="n">error</span> <span class="n">index</span><span class="p">:</span> <span class="n">test_database</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="err">$</span><span class="n">user_id_1</span> <span class="n">dup</span> <span class="n">key</span><span class="p">:</span> <span class="p">{</span> <span class="p">:</span> <span class="mi">212</span> <span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>

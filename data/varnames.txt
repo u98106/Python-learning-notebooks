@@ -1,0 +1,12 @@
+validVar
+valid_var
+num
+num_1
+_num1
+_1
+_
+__add__
+1+2
+1name
+$name
+"hello"
